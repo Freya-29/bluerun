@@ -1,0 +1,84 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "projects": {
+      "my-app": {
+        "root": "apps/my-app",
+        "sourceRoot": "apps/my-app/src",
+        "projectType": "application",
+        "prefix": "app",
+        "architect": {
+          "build": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+              "outputPath": "dist/my-app",
+              "index": "apps/my-app/src/index.html",
+              "main": "apps/my-app/src/main.ts",
+              "polyfills": "apps/my-app/src/polyfills.ts",
+              "tsConfig": "apps/my-app/tsconfig.app.json",
+              "assets": [
+                "apps/my-app/src/favicon.ico",
+                "apps/my-app/src/assets"
+              ],
+              "styles": [
+                "apps/ngshop/src/styles.scss",
+                "apps/admin/src/styles.scss"
+
+              ],
+              "scripts": []
+            },
+            "configurations": {
+              "production": {
+                "fileReplacements": [
+                  {
+                    "replace": "apps/my-app/src/environments/environment.ts",
+                    "with": "apps/my-app/src/environments/environment.prod.ts"
+                  }
+                ],
+                "optimization": true,
+                "outputHashing": "all",
+                "sourceMap": false,
+                "namedChunks": false,
+                "aot": true,
+                "extractCss": true,
+                "extractLicenses": true,
+                "vendorChunk": false,
+                "buildOptimizer": true,
+                "budgets": [
+                  {
+                    "type": "initial",
+                    "maximumWarning": "2mb",
+                    "maximumError": "5mb"
+                  },
+                  {
+                    "type": "anyComponentStyle",
+                    "maximumWarning": "6kb",
+                    "maximumError": "10kb"
+                  }
+                ]
+              }
+            }
+          },
+          "serve": {
+            "builder": "@angular-devkit/build-angular:dev-server",
+            "options": {
+              "browserTarget": "my-app:build"
+            },
+            "configurations": {
+              "production": {
+                "browserTarget": "my-app:build:production"
+              }
+            }
+          },
+          "extract-i18n": {
+            "builder": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+              "browserTarget": "my-app:build"
+            }
+          }
+        }
+      }
+    },
+    "defaultProject": "ngshop"
+  }
+  
